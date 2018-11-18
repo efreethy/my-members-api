@@ -1,0 +1,53 @@
+{
+  "name": "my-members-api",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build": "npm run clean && npm run build:babel",
+    "build:babel": "babel -d ./build ./src -s --copy-files",
+    "postinstall": "npm run build",
+    "start": "npm run build && npmDEBUG=express-sequelize node ./build/index.js",
+    "start:dev": "npm run build && npmDEBUG=express-sequelize node ./build/index.js",
+    "test": "npm run test-unit && npm run test-integration",
+    "test-unit": "cross-env NODE_ENV=test ./node_modules/.bin/mocha build/test/unit/*.test.js",
+    "test-integration": "cross-env NODE_ENV=test ./node_modules/.bin/mocha build/test/integration/*.test.js",
+    "sort": "./node_modules/.bin/js-import-sort --path ./src/*"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "continuation-local-storage": "^3.2.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^3.1.0",
+    "express": "^4.16.2",
+    "express-joi-validation": "^0.2.1",
+    "express-jwt": "^5.3.1",
+    "express-promise": "^0.4.0",
+    "joi": "^13.6.0",
+    "js-import-sort": "^1.2.0",
+    "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
+    "morgan": "^1.7.0",
+    "mysql": "^2.16.0",
+    "pg": "^6.4.2",
+    "pug": "^2.0.0-rc.4",
+    "sequelize": "^4.38.1",
+    "sequelize-cli": "^4.1.1",
+    "sequelize-querystring": "^0.9.1",
+    "serve-favicon": "~2.3.0",
+    "short-unique-id": "^1.1.1",
+    "sqlite3": "^4.0.0"
+  },
+  "devDependencies": {
+    "@kant/babel-watch": "^2.1.1",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "cross-env": "^3.1.3",
+    "expect.js": "^0.3.1",
+    "mocha": "^4.0.2",
+    "supertest": "^3.0.0"
+  }
+}
